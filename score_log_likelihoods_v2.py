@@ -87,7 +87,8 @@ def score_singlechain_backbone(model, alphabet, args):
     # code to modify the native sequenca and coords
     native_seq = ''.join(read_fasta(args.seqfile_path).split())
     mask= align_sequences(coords_seq, native_seq)
-    coords = updata_cords(coords, mask, args.start_index)
+    coords = updata_cords(coords, mask)
+    coords = coords[args.start_index:]
     # make sure the coords and native_seq are aligned
     assert len(coords) == len(native_seq), "Coords and native sequence lengths do not match"
    # convert coords to float32
