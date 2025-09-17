@@ -22,21 +22,21 @@ def get_native_seq(pdbfile, chain):
 
 
 def align_sequences(seq1, seq2):
-    # Perform global alignment using the Needleman-Wunsch algorithm
+    """
+    Align seq1 to seq2 using global alignment and generate mask relative to seq2.
+    Mask[i] = 1 if seq1 has a residue aligned at position i in seq2, else 0.
+    Length of mask == len(seq2)
+    """
     alignments = pairwise2.align.globalxx(seq1, seq2)
+    aligned_seq1, aligned_seq2, score, start, end = alignments[0]
 
-    # Take the best alignment (highest score)
-    best_alignment = alignments[0]
-    aligned_seq1, aligned_seq2, score, start, end = best_alignment
-
-    # Generate the mask
     mask = []
-    for a, b in zip(aligned_seq1, aligned_seq2):
-        if a == b and a != "-":
-            mask.append(1)  # Match
-        else:
-            mask.append(0)  # Mismatch or gap
 
+    for a1, a2 in zip(aligned_seq1, aligned_seq2):
+        if a2 != "-":  # only consider reference positions
+            mask.append(1 if a1 != "-" else 0)
+
+    assert len(mask) == len(seq2), f"Mask length {len(mask)} != seq2 length {len(seq2)}"
     return mask
 #
 def read_fasta(file_path):
@@ -58,7 +58,7 @@ def read_fasta(file_path):
             sequences[seq_id] = seq  # Add the last sequence
     return seq
 
-def updata_cords(coords, mask,start_index=0):
+def update_coords(coords, mask, start_index=0):
     """
     Update the coordinates based on the mask.
     Args:
@@ -87,7 +87,7 @@ def score_singlechain_backbone(model, alphabet, args):
     # code to modify the native sequenca and coords
     native_seq = ''.join(read_fasta(args.seqfile_path).split())
     mask= align_sequences(coords_seq, native_seq)
-    coords = updata_cords(coords, mask)
+    coords = update_coords(coords, mask)
     coords = coords[args.start_index:]
     # make sure the coords and native_seq are aligned
     assert len(coords) == len(native_seq), "Coords and native sequence lengths do not match"

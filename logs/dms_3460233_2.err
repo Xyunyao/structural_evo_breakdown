@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/friesner/yx2218/structural-evolution/structural_evo_breakdown/score_log_likelihoods_v3.py", line 239, in <module>
+    main()
+  File "/mnt/beegfs/home/friesner/yx2218/structural-evolution/structural_evo_breakdown/score_log_likelihoods_v3.py", line 235, in main
+    score_singlechain_backbone(model, alphabet, args)
+  File "/mnt/beegfs/home/friesner/yx2218/structural-evolution/structural_evo_breakdown/score_log_likelihoods_v3.py", line 93, in score_singlechain_backbone
+    assert len(coords) == len(native_seq), "Coords and native sequence lengths do not match"
+AssertionError: Coords and native sequence lengths do not match

@@ -1,0 +1,6 @@
+/mnt/beegfs/home/friesner/yx2218/structural-evolution/structural_evo_breakdown/SHP2/structure_data/4DGP.pdb A 0
+/mnt/beegfs/home/friesner/yx2218/structural-evolution/structural_evo_breakdown/SHP2/structure_data/6CRF.pdb A 1
+/mnt/beegfs/home/friesner/yx2218/structural-evolution/structural_evo_breakdown/SHP2/structure_data/6CRF.pdb B 1
+/mnt/beegfs/home/friesner/yx2218/structural-evolution/structural_evo_breakdown/SHP2/structure_data/3ps5.pdb A 0
+/mnt/beegfs/home/friesner/yx2218/structural-evolution/structural_evo_breakdown/SHP2/structure_data/shp2_4dgp_temp.pdb A 0
+/mnt/beegfs/home/friesner/yx2218/structural-evolution/structural_evo_breakdown/SHP2/structure_data/shp2_6crf_temp.pdb A 0
