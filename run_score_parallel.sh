@@ -2,10 +2,10 @@
 #SBATCH --job-name=dms_score
 #SBATCH --partition=fcpu        # CPU partition
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=6
+#SBATCH --cpus-per-task=4
 #SBATCH --mem=8G
 #SBATCH --time=12:00:00
-#SBATCH --array=0-5              # adjust to number of lines in pdb_jobs.txt
+#SBATCH --array=0-1              # adjust to number of lines in pdb_jobs.txt
 #SBATCH --output=logs/dms_%A_%a.out
 #SBATCH --error=logs/dms_%A_%a.err
 
@@ -25,7 +25,7 @@ output_dir="./SHP2/output"
 mkdir -p "$dmslib_dir" "$output_dir" logs
 
 # Pick job line based on SLURM_ARRAY_TASK_ID
-jobline=$(sed -n "$((SLURM_ARRAY_TASK_ID+1))p" pdb_jobs.txt)
+jobline=$(sed -n "$((SLURM_ARRAY_TASK_ID+1))p" pdb_jobs2.txt)
 pdbfile=$(echo "$jobline" | awk '{print $1}')
 chain=$(echo "$jobline" | awk '{print $2}')
 start_index=$(echo "$jobline" | awk '{print $3}')
